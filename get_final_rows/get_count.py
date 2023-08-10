@@ -24,7 +24,7 @@ def find_count_column(df: DataFrame) -> (int, int):
 
 def get_count(df: DataFrame, column_id: int, row: int) -> int | None:
     element = df.iloc[row][column_id]
-    if element.isDisgit():
+    if isinstance(element, str) and element.isdigit():
         return int(element)
     else:
         return None

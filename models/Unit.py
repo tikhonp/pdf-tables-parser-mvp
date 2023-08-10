@@ -9,3 +9,6 @@ class Unit:
     description: str
     full_name: str
     is_discrete: bool
+
+    def __str__(self):
+        return self.full_name

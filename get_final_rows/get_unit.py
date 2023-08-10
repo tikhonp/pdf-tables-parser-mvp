@@ -1,6 +1,8 @@
 from pandas import DataFrame
 
-from models import Unit
+from models.Unit import Unit
+
+from fuzzywuzzy import fuzz
 
 
 def find_unit_column(df: DataFrame) -> (int, int):
@@ -24,8 +26,17 @@ def find_unit_column(df: DataFrame) -> (int, int):
     return column_id, from_row_id
 
 
-def find_unit(tag: str, units: [Unit]) -> Unit:
-    return next((x for x in units if tag in x.full_name.lower()))
+def find_unit(tag: str, units: [Unit]) -> Unit | None:
+    current_max_rate_unit = None
+    current_rate = 0
+
+    for u in units:
+        ratio = fuzz.WRatio(tag.lower(), u.full_name.lower())
+        if ratio > current_rate:
+            current_max_rate_unit = u
+            current_rate = ratio
+
+    return current_max_rate_unit
 
 
 def get_unit(df: DataFrame, column_id: int, row: int, units: [Unit]) -> Unit:

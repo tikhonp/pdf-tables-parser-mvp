@@ -52,3 +52,6 @@ class ProductType:
     correct_Nom: int
     Code_OKPD: int
     Code_TNVED: int
+
+    def __str__(self):
+        return self.full_name

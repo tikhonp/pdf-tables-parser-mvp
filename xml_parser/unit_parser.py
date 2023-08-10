@@ -1,7 +1,7 @@
 import xml.dom.minidom
 from pathlib import Path
 
-from models import Unit
+from models.Unit import Unit
 
 
 def parse_unit_element(xml_element) -> Unit:

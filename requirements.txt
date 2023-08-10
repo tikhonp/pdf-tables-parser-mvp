@@ -1,2 +1,4 @@
 pandas==2.0.3
 tqdm==4.66.1
+img2table==1.0.9
+fuzzywuzzy==0.18.0
