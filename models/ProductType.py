@@ -16,7 +16,7 @@ class ProductType:
     internal_certification: bool
     service: bool
     serial_numbers: bool
-    complect: bool
+    suite: bool
     Lom149NK: bool
     delete: bool
     responsible_manager: str
@@ -53,5 +53,9 @@ class ProductType:
     Code_OKPD: int
     Code_TNVED: int
 
+    @property
+    def wrapped_description(self):
+        return self.description if self.description is not None else ""
+
     def __str__(self):
-        return self.full_name
+        return f"Product({self.full_name} | {self.description})"
